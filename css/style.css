@@ -1,0 +1,182 @@
+:root {
+  --dark-bg: #104c4c;
+  --dark-cont: rgba(0, 0, 0, 0.251);
+  --dark-font-color: #fff;
+  --light-bg: #9cdcdc;
+  --light-cont: rgba(255, 255, 255, 0.31);
+  --light-font-color: #595858;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-family: "Outfit", sans-serif;
+  font-size: 62, 5%;
+}
+
+.wrapper {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--light-bg);
+}
+
+.theme-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+}
+
+.sun,
+.moon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 400px;
+  min-width: 300px;
+  padding: 1.5rem 2.5rem;
+  background-color: var(--light-cont);
+  border-radius: 8px;
+}
+
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--light-font-color);
+}
+.form__title {
+  font-size: 2rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+.form__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+.form__label {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+.form__input {
+  width: 100%;
+  height: 34px;
+  padding: 10px;
+  font-size: 1rem;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+}
+.form__input:focus {
+  outline: 2px solid aqua;
+}
+.form__checkbox {
+  height: 55px;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.form__checkbox-input {
+  height: 16px;
+  width: 18px;
+  margin-right: 10px;
+  border: none;
+}
+.form__checkbox-input:focus {
+  outline: 2px solid aqua;
+}
+.form__checkbox-label {
+  font-size: 0.8rem;
+}
+.form__buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+.form__btn {
+  min-width: 110px;
+  padding: 0.7rem 1.1rem;
+  font-size: 0.9rem;
+  background-color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s, outline 0.2s;
+  transition: background-color 0.3s, outline 0.2s;
+}
+.form__btn:hover {
+  background-color: #33aeae;
+}
+
+.error-text {
+  margin-top: 3px;
+  font-size: 0.8rem;
+  color: rgb(219, 85, 85);
+}
+
+.hidden-text {
+  visibility: hidden;
+}
+
+.checkbox-error {
+  outline: 2px solid red;
+}
+
+.wrapper.adaptive {
+  background-color: var(--dark-bg);
+  color: var(--dark-font-color);
+}
+
+.container.adaptive {
+  background-color: var(--dark-cont);
+}
+
+.form.adaptive {
+  color: var(--dark-font-color);
+}/*# sourceMappingURL=style.css.map */

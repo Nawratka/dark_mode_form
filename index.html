@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer type="module" src="./script.js"></script>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="theme-box">
+            <img class="sun" src="./sun.svg" alt="sun icon">
+            <img class="moon" src="./moon.svg" alt="moon icon">
+        </div>
+        <div class="container">
+            <form action="" class="form">
+                <h3 class="form__title">Zarejestruj się</h3>
+                <div class="form__box">
+                    <label class="form__label" for="name">Nazwa użytkownika</label>
+                    <input class="form__input name-input" type="text">
+                    <p class="error-text">Nazwa użytkownika składa się z min. 3 znaków</p>
+                </div>
+                <div class="form__box">
+                    <label class="form__label" for="email">E-mail</label>
+                    <input class="form__input email-input" type="email">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form__box">
+                    <label class="form__label" for="password">Hasło</label>
+                    <input class="form__input password-input" type="password">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form__box">
+                    <label class="form__label" for="password2">Powtórz hasło</label>
+                    <input class="form__input password-input-2" type="password">
+                    <p class="error-text">error</p>
+                </div>
+                <div class="form__box form__checkbox">
+                    <input id="rodo" class="form__checkbox-input" type="checkbox"></input>
+                    <label class="form__label form__checkbox-label" for="rodo">Wyrażam zgodę na przetważanie moich danych osobowych</label>
+                </div>
+                <div class="form__buttons">
+                    <button class="form__btn clear">Wyczyść</button>
+                    <button type="submit" class="form__btn send">Wyślij</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
