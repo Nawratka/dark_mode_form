@@ -25,26 +25,26 @@
                 <h3 class="form__title">Zarejestruj się</h3>
                 <div class="form__box">
                     <label class="form__label" for="name">Nazwa użytkownika</label>
-                    <input class="form__input name-input" type="text">
-                    <p class="error-text">Nazwa użytkownika składa się z min. 3 znaków</p>
+                    <input class="name-input form__input" type="text">
+                    <p class="error-text hidden-text">error</p>
                 </div>
                 <div class="form__box">
                     <label class="form__label" for="email">E-mail</label>
                     <input class="form__input email-input" type="email">
-                    <p class="error-text">error</p>
+                    <p class="error-text hidden-text">error</p>
                 </div>
                 <div class="form__box">
                     <label class="form__label" for="password">Hasło</label>
                     <input class="form__input password-input" type="password">
-                    <p class="error-text">error</p>
+                    <p class="error-text hidden-text">error</p>
                 </div>
                 <div class="form__box">
                     <label class="form__label" for="password2">Powtórz hasło</label>
                     <input class="form__input password-input-2" type="password">
-                    <p class="error-text">error</p>
+                    <p class="error-text hidden-text">error</p>
                 </div>
                 <div class="form__box form__checkbox">
-                    <input id="rodo" class="form__checkbox-input" type="checkbox"></input>
+                    <input id="rodo" class="form__input form__checkbox-input" type="checkbox"></input>
                     <label class="form__label form__checkbox-label" for="rodo">Wyrażam zgodę na przetważanie moich danych osobowych</label>
                 </div>
                 <div class="form__buttons">
@@ -53,8 +53,10 @@
                 </div>
             </form>
         </div>
+        <div class="info-box hidden">
+            <p class="info-text">Sukces! 😊</p>
+            <button class="info-close-btn form__btn">ok</button>
+        </div>
     </div>
-
 </body>
-
 </html>

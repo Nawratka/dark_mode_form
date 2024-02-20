@@ -6,11 +6,12 @@ class Theme {
 	themeMoon = document.querySelector('.moon');
 	wrapper = document.querySelector('.wrapper');
 	container = document.querySelector('.container');
+	modal = document.querySelector('.info-box');
 	form = document.querySelector('.form');
-	themeItems = [this.wrapper, this.form, this.container];
+	themeItems = [this.wrapper, this.form, this.container, this.modal];
 
 	// LISTENS FOR LOAD, CHECKS IF THEME IS STORED IN LOCAL STORAGE
-	addHandlerTheme() {
+	addHandlerSystemTheme() {
 		window.addEventListener('load', () => {
 			if (localStorage.getItem('theme')) {
 				this.persistTheme();
