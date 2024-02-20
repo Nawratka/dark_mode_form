@@ -147,7 +147,7 @@ html {
 // CLASSES TO INDICATE ERRORS OR HIDE THINGS
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .error-text {
@@ -169,7 +169,11 @@ html {
 	background-color: var(--dark-bg);
 	color: var(--dark-font-color);
 }
-.container.adaptive, .info-box.adaptive {
+.container.adaptive {
+	background-color: var(--dark-cont);
+}
+
+.info-box.adaptive {
 	background-color: var(--dark-bg);
 }
 .form.adaptive {

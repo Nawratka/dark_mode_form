@@ -200,7 +200,11 @@ html {
   color: var(--dark-font-color);
 }
 
-.container.adaptive, .info-box.adaptive {
+.container.adaptive {
+  background-color: var(--dark-cont);
+}
+
+.info-box.adaptive {
   background-color: var(--dark-bg);
 }
 
