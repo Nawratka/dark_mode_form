@@ -5,9 +5,8 @@ const checkBox = document.getElementById('rodo');
 const sendBtn = document.querySelector('.send');
 const clearBtn = document.querySelector('.clear');
 const closeModalBtn = document.querySelector('.info-close-btn');
-const modal = document.querySelector('.info-box');
 
-class Formulage {
+class Form {
 	constructor() {
 		this.clearForm();
 	}
@@ -26,6 +25,14 @@ class Formulage {
 
 	addHandleClearBtn() {
 		clearBtn.addEventListener('click', this.clearForm.bind(this));
+	}
+
+	clearForm() {
+		inputs.forEach((el) => (el.value = ''));
+		document
+			.querySelectorAll('.error-text')
+			.forEach((el) => el.classList.add('hidden-text'));
+		checkBox.checked = false;
 	}
 
 	addHandleCloseModal(handler) {
@@ -69,8 +76,8 @@ class Formulage {
 		}
 	}
 
-	checkPasswords(pass1, passwordLenght, pass2) {
-		if (!(pass1.value.trim().length >= passwordLenght)) return;
+	checkPasswords(pass1, passwordLength, pass2) {
+		if (!(pass1.value.trim().length >= passwordLength)) return;
 
 		if (!(pass2.value.trim() === pass1.value.trim())) {
 			this.showError(pass2, null, 'Błędne hasło');
@@ -80,14 +87,6 @@ class Formulage {
 		}
 	}
 
-	clearForm() {
-		inputs.forEach((el) => (el.value = ''));
-		document
-			.querySelectorAll('.error-text')
-			.forEach((el) => el.classList.add('hidden-text'));
-		checkBox.checked = false;
-	}
-
 	handleCheckboxOutline() {
 		checkBox.checked
 			? checkBox.classList.remove('checkbox-error', 'error')
@@ -95,4 +94,4 @@ class Formulage {
 	}
 }
 
-export default new Formulage();
+export default new Form();

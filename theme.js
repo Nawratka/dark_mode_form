@@ -48,7 +48,7 @@ class Theme {
 		}
 	}
 	
-	// WHEN LS IS EMPTY, THEME IS SET BASED ON USERS PREFFERED COLOR
+	// WHEN LS IS EMPTY, THEME IS SET BASED ON USERS PREFERRED COLOR
 	usersSystemTheme() {
 		if (
 			window.matchMedia &&
