@@ -1,14 +1,17 @@
 'use strict';
 
-const inputs = document.querySelectorAll('.form__input');
+const pass1 = document.querySelector('.password-input');
 const checkBox = document.getElementById('rodo');
 const sendBtn = document.querySelector('.send');
 const clearBtn = document.querySelector('.clear');
 const closeModalBtn = document.querySelector('.info-close-btn');
 
 class Form {
-	constructor() {
-		this.clearForm();
+	init(clearForm, handleInputs, closeModal) {
+		this.addHandleClearBtn(clearForm);
+		this.addHandleSendBtn(handleInputs);
+		this.addHandleCheckbox();
+		this.addHandleCloseModal(closeModal);
 	}
 
 	addHandleCheckbox() {
@@ -23,16 +26,11 @@ class Form {
 		});
 	}
 
-	addHandleClearBtn() {
-		clearBtn.addEventListener('click', this.clearForm.bind(this));
-	}
-
-	clearForm() {
-		inputs.forEach((el) => (el.value = ''));
-		document
-			.querySelectorAll('.error-text')
-			.forEach((el) => el.classList.add('hidden-text'));
-		checkBox.checked = false;
+	addHandleClearBtn(handler) {
+		clearBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			handler();
+		});
 	}
 
 	addHandleCloseModal(handler) {
@@ -42,49 +40,66 @@ class Form {
 		});
 	}
 
-	showError(inp, lng = 0, msg = 'błąd') {
+	checkErrors(inp, lng) {
+		// CASE: TOO SHORT || EMPTY INPUT VALUE
+		if (inp.value.trim().length < lng || inp.value.trim() === '') {
+			this.showError(inp, lng);
+			return;
+		}
+
+		// CASE: FALSE EMAIL FORMAT
+		if (inp.classList.contains('email-input'))
+			if (!this._checkEmail(inp))
+				this.showError(inp, 0, 'Email jest niepoprawny', true);
+
+		// CASE: REPEAT PASSWORD CHECK
+		if (inp.classList.contains('password-input-2')) {
+			if (!this._checkPasswords(pass1, inp))
+				this.showError(inp, 0, 'Błędne hasło', true);
+		}
+		
+		// NO ERRORS
+		return;
+	}
+
+	showError(inp, lng, msg, additionalCheck = false) {
 		const errorTextParagraph = inp.nextElementSibling;
-		errorTextParagraph.textContent = this.generateMsg(inp, lng, msg);
+		errorTextParagraph.textContent = this.generateMsg(
+			inp,
+			lng,
+			msg,
+			additionalCheck
+		);
+		inp.classList.add('error');
 		errorTextParagraph.classList.remove('hidden-text');
 	}
 
-	generateMsg(inp, lng, msg) {
+	generateMsg(inp, lng, msg, additionalCheck) {
 		const fieldName = inp.previousElementSibling.innerText;
 
-		// CHECK IF EMPTY || TOO SHORT
-		if (inp.value.trim().length < lng || inp.value.trim() === '') {
-			inp.classList.add('error');
-
-			if (inp.classList.contains('password-input-2')) return `${msg}`;
-
-			return `${fieldName} składa się z min. ${lng} znaków`;
-		}
-
 		// FALSE EMAIL FORMAT
-		if (inp.classList.contains('email-input')) return `${msg}`;
+		if (inp.classList.contains('email-input') && additionalCheck === true)
+			return `${msg}`;
+
+		// REPEAT-PASSWORD CHECK WHEN COMPARE TO PASSWORD 1
+		if (inp.classList.contains('password-input-2') && additionalCheck === true) return `${msg}`;
+
+		// REPEAT-PASSWORD CHECK WHEN EMPTY || TOO SHORT
+		if (inp.classList.contains('password-input-2')) return `${fieldName}`;
+
+		// GENERAL ERROR TEXT
+		return `${fieldName} składa się z min. ${lng} znaków`;
 	}
 
-	checkEmail(email, lng, msg) {
+	_checkEmail(email) {
 		const re =
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-		if (re.test(email.value)) {
-			email.nextElementSibling.classList.add('hidden-text');
-		} else {
-			this.showError(email, lng, msg);
-			email.classList.add('error');
-		}
+		return re.test(email.value);
 	}
 
-	checkPasswords(pass1, passwordLength, pass2) {
-		if (!(pass1.value.trim().length >= passwordLength)) return;
-
-		if (!(pass2.value.trim() === pass1.value.trim())) {
-			this.showError(pass2, null, 'Błędne hasło');
-			pass2.classList.add('error');
-		} else {
-			pass2.nextElementSibling.classList.add('hidden-text');
-		}
+	_checkPasswords(pass1, pass2) {
+		return pass2.value === pass1.value;
 	}
 
 	handleCheckboxOutline() {

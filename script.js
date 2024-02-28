@@ -16,24 +16,27 @@ const nameLength = 3;
 const emailLength = 7;
 const passwordLength = 5;
 
-const checkInputs = function () {
-	// DELETING PREVIOUS ERRORS
-	errorParagraphs.forEach((p) => p.classList.add('hidden-text'));
+//////////////////////////////////////////////////////////////
+
+const removeErrors = function () {
+	errorParagraphs.forEach((p) => {
+		p.classList.add('hidden-text');
+		p.textContent = '';
+	});
 	inputs.forEach((inp) => inp.classList.remove('error'));
 	checkBox.classList.remove('checkbox-error');
+};
+
+const handleInputs = function () {
+	// DELETING PREVIOUS ERRORS
+	removeErrors();
 
 	// CHECK LENGTH AND IF EMPTY
-	Form.showError(nameInput, nameLength);
-	Form.showError(emailInput, emailLength);
-	Form.showError(passwordInput, passwordLength);
-	Form.showError(passwordInput2, passwordLength, 'Powtórz hasło');
+	Form.checkErrors(nameInput, nameLength);
+	Form.checkErrors(emailInput, emailLength);
+	Form.checkErrors(passwordInput, passwordLength);
+	Form.checkErrors(passwordInput2, passwordLength);
 	Form.handleCheckboxOutline();
-
-	// TEST EMAIL BASED ON REGEX
-	Form.checkEmail(emailInput, emailLength, 'Email jest niepoprawny');
-
-	// TEST IF PASSWORDS ARE SAME
-	Form.checkPasswords(passwordInput, passwordLength, passwordInput2);
 
 	const formErrors = document.querySelectorAll('.error');
 
@@ -41,18 +44,24 @@ const checkInputs = function () {
 	if (formErrors.length === 0) modal.classList.remove('hidden');
 };
 
+const clearForm = function () {
+	removeErrors();
+	inputs.forEach((el) => {
+		if (el.type !== 'checkbox') el.value = '';
+	});
+	checkBox.checked = false;
+};
+
 const closeModal = function () {
 	modal.classList.add('hidden');
-	Form.clearForm();
+	clearForm();
 };
 
 const init = function () {
+	clearForm();
 	Theme.addHandlerSystemTheme();
 	Theme.addHandlerThemeBtn();
 
-	Form.addHandleClearBtn();
-	Form.addHandleSendBtn(checkInputs);
-	Form.addHandleCheckbox();
-	Form.addHandleCloseModal(closeModal);
+	Form.init(clearForm, handleInputs, closeModal);
 };
 init();
