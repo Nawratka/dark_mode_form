@@ -21,7 +21,7 @@ const passwordLength = 5;
 const removeErrors = function () {
 	errorParagraphs.forEach((p) => {
 		p.classList.add('hidden-text');
-		p.textContent = '';
+		p.textContent = 'error';
 	});
 	inputs.forEach((inp) => inp.classList.remove('error'));
 	checkBox.classList.remove('checkbox-error');
@@ -59,8 +59,8 @@ const closeModal = function () {
 
 const init = function () {
 	clearForm();
-	Theme.addHandlerSystemTheme();
-	Theme.addHandlerThemeBtn();
+	Theme.handleSystemSettings();
+	Theme.handleBtn();
 
 	Form.init(clearForm, handleInputs, closeModal);
 };

@@ -11,10 +11,10 @@ class Theme {
 	themeItems = [this.wrapper, this.form, this.container, this.modal];
 
 	// LISTENS FOR LOAD, CHECKS IF THEME IS STORED IN LOCAL STORAGE
-	addHandlerSystemTheme() {
+	handleSystemSettings() {
 		window.addEventListener('load', () => {
 			if (localStorage.getItem('theme')) {
-				this.persistTheme();
+				this.persistSettings();
 			} else {
 				this.usersSystemTheme();
 			}
@@ -22,20 +22,20 @@ class Theme {
 	}
 
 	// LISTENS FOR CLICK, CHANGE THEME BTN HANDLE
-	addHandlerThemeBtn() {
+	handleBtn() {
 		this.themeBox.addEventListener('click', this.themeHandle.bind(this));
 	}
 
 	// THEME CHANGES: ICONS AND THEME ITSELF
 	themeHandle() {
-		this.toggleThemeIconsVisibility();
+		this.toggleIconsVisibility();
 		this.themeSun.classList.contains('hidden')
 			? this.removeDarkStyle()
 			: this.addDarkStyle();
 	}
 
 	// SET THEME FROM LOCAL STORAGE
-	persistTheme() {
+	persistSettings() {
 		let theme = localStorage.getItem('theme');
 		if (theme === 'dark') {
 			this.addDarkStyle();
@@ -63,7 +63,7 @@ class Theme {
 	}
 	
 	// SUN AND MOON ICON TOGGLE VISIBILITY
-	toggleThemeIconsVisibility() {
+	toggleIconsVisibility() {
 		[this.themeSun, this.themeMoon].forEach((el) =>
 			el.classList.toggle('hidden')
 		);
